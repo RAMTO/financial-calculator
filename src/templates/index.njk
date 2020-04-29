@@ -1,0 +1,77 @@
+{% set pageCanonical = "" %}
+{% set pageClass = "page-default" %}
+{% set pageTitle = "Financial calculator" %}
+{% set pageDescription = "" %}
+{% set pageKeywords = "" %}
+
+{% extends "partials/_layout.njk" %}
+
+{% block content %}
+
+<section class="section py-6 py-md-10 py-mg-15">
+  <div class="container">
+    <h1 class="text-mega">Финансов калкулатор <span class="text-small text-slate">v. 1.0.0</span></h1>
+    <p class="text-small">Направен от <a target="_blank" rel="noppener"
+        href="https://www.linkedin.com/in/martin-dobrev-75774729" class="link-primary">Мартин Добрев</a></p>
+    <div class="row mt-7">
+      <div class="col-mg-8">
+
+        <div class="card p-4 bg-snow">
+          <h2 class="text-headline mb-4">Капитализация</h2>
+
+          <div class="row" id="APRInputs">
+            <div class="form-group col-md-3" id="principalAmountContainer">
+              <label class="text-label" for="">Начална сума</label>
+              <input type="text" class="form-control text-right" id="principalAmountInput" value="1000">
+            </div>
+
+            <div class="form-group col-md-3 d-none" id="accuredAmountContainer">
+              <label class="text-label" for="">Крайна сума</label>
+              <input type="text" class="form-control text-right" id="accuredAmountInput" value="0">
+            </div>
+
+            <div class="form-group col-md-3" id="interestRateContainer">
+              <label class="text-label" for="">Доходност в %</label>
+              <input type="text" class="form-control text-right" id="interestRateInput" value="4">
+            </div>
+
+            <div class="form-group col-md-3">
+              <label class="text-label" for="">Олихвявания за година</label>
+              <input type="text" class="form-control text-right" id="compoudingPeriodsInput" value="12">
+            </div>
+
+            <div class="form-group col-md-3" id="yearsContainer">
+              <label class="text-label" for="">Години</label>
+              <input type="text" class="form-control text-right" id="yearsInput" value="5">
+            </div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-md-3 mb-4 mb-md-0">
+              <a href="#" class="btn btn-primary btn-block" id="calculateButton">Изчисли</a>
+            </div>
+
+            <div class="col-md-3">
+              <div class="custom-select-wrapper">
+                <select name="" id="calculationModeSelect" class="form-control custom-select">
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="p-3 bg-white">
+                <div class="">
+                  <!-- <p class="text-lead text-bold" id="calculatedResultLabel">Крайна сума</p> -->
+                  <p class="text-right text-lead text-bold" id="calculatedResult">0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
