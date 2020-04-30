@@ -185,6 +185,21 @@ function calculateYears({
   return years;
 }
 
+function calculateFutureValue(presentValue, interestRate, compoudingPeriods) {
+  var interestRateDec = interestRate / 100;
+  // FV = PV * (1 + R)n
+  var futureValue =
+    presentValue * Math.pow(1 + interestRateDec, compoudingPeriods);
+
+  return futureValue;
+}
+
+function calculateRealInterest(nominalRate, infaltionRate) {
+  var rearInterest = (1 + nominalRate) / (1 + infaltionRate) - 1;
+
+  return rearInterest;
+}
+
 $(document).ready(function () {
   // Init
   appInit();
