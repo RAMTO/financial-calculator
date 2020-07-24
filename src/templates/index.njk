@@ -11,8 +11,9 @@
 <section class="section py-6 py-md-10 py-mg-15">
   <div class="container">
     <h1 class="text-mega">Финансов калкулатор <span class="text-small text-slate">v. 1.0.0</span></h1>
-    <p class="text-small">Направен от <a target="_blank" rel="noppener"
-        href="https://www.linkedin.com/in/martin-dobrev-75774729" class="link-primary">Мартин Добрев</a></p>
+    <p class="text-small">Направен от <a target="_blank" rel="noppener" href="https://www.linkedin.com/in/martin-dobrev-75774729" class="link-primary">Мартин Добрев</a>
+    </p>
+
     <div class="row mt-7">
       <div class="col-mg-8">
 
@@ -65,6 +66,38 @@
                   <p class="text-right text-lead text-bold" id="calculatedResult">0</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-5 mt-lg-7 p-4 bg-snow">
+          <h2 class="text-headline mb-4">Заплата</h2>
+
+          <div class="row" id="SalaryInputs">
+            <div class="form-group col-md-3" id="grossContainer">
+              <label class="text-label" for="grossInput">Бруто</label>
+              <input type="text" class="form-control text-right" id="grossInput" value="1000">
+            </div>
+
+            <div class="form-group col-md-3" id="insuranceContainer">
+              <label class="text-label" for="insuranceInput" data-toggle="tooltip" data-placement="top" title="13.78%">Осигуровки <i class="fas fa-question-circle"></i></label>
+              <input type="text" class="form-control text-right" id="insuranceInput" disabled>
+            </div>
+
+            <div class="form-group col-md-3" id="taxContainer">
+              <label class="text-label" for="taxInput" data-toggle="tooltip" data-placement="top" title="10%">Данък (ДДФЛ) <i class="fas fa-question-circle"></i></label>
+              <input type="text" class="form-control text-right" id="taxInput" disabled>
+            </div>
+
+            <div class="form-group col-md-3" id="netContainer">
+              <label class="text-label" for="netInput">Нето</label>
+              <input type="text" class="form-control text-right" id="netInput" disabled>
+            </div>
+          </div>
+
+          <div class="row align-items-center">
+            <div class="col-md-3 mb-4 mb-md-0">
+              <a href="#" class="btn btn-primary btn-block" id="calculateButtonSalary">Изчисли</a>
             </div>
           </div>
         </div>

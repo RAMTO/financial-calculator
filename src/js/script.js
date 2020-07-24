@@ -5,6 +5,12 @@ var $calculatedResultLabel = $('#calculatedResultLabel');
 var $calculatedResult = $('#calculatedResult');
 var $APRInputs = $('#APRInputs');
 
+var $calculateButtonSalary = $('#calculateButtonSalary');
+
+const INSURANCE = 0.1378;
+const INSURANCE_LIMIT = 3000;
+const INCOME_TAX = 0.1;
+
 // Calculator config
 var config = {
   modes: ['accured', 'principal', 'interest', 'years'],
@@ -61,6 +67,8 @@ var currentMode = config.modes[initialModeIndex];
 
 // App functions
 function appInit() {
+  $('[data-toggle="tooltip"]').tooltip();
+
   initModeSelect();
 }
 
@@ -103,6 +111,31 @@ function handleCalclateButtonClick() {
 
   var calculatedResult = config.modeMap[currentMode].handler(inputValuesObject);
   $calculatedResult.html(numeral(calculatedResult).format('0,0.00'));
+}
+
+function handleCalclateButtonSalaryClick() {
+  // Get field valuеs by mode
+  var inputValuesObject = {};
+  var $grossInput = $('#grossInput');
+  var $insuranceInput = $('#insuranceInput');
+  var $taxInput = $('#taxInput');
+  var $netInput = $('#netInput');
+
+  var grossInputValue = parseInt($grossInput.val().trim(), 10);
+
+  var insuranceInputValue =
+    (grossInputValue <= INSURANCE_LIMIT ? grossInputValue : INSURANCE_LIMIT) *
+    INSURANCE;
+  $insuranceInput.val(insuranceInputValue.toFixed(2));
+
+  var taxInputValue = (grossInputValue - insuranceInputValue) * INCOME_TAX;
+  $taxInput.val(taxInputValue.toFixed(2));
+
+  var netInputValue = grossInputValue - insuranceInputValue - taxInputValue;
+  $netInput.val(netInputValue.toFixed(2));
+
+  var calculatedResult = config.modeMap[currentMode].handler(inputValuesObject);
+  // $calculatedResult.html(numeral(calculatedResult).format('0,0.00'));
 }
 
 // Financial functions
@@ -185,15 +218,6 @@ function calculateYears({
   return years;
 }
 
-function calculateFutureValue(presentValue, interestRate, compoudingPeriods) {
-  var interestRateDec = interestRate / 100;
-  // FV = PV * (1 + R)n
-  var futureValue =
-    presentValue * Math.pow(1 + interestRateDec, compoudingPeriods);
-
-  return futureValue;
-}
-
 function calculateRealInterest(nominalRate, infaltionRate) {
   var rearInterest = (1 + nominalRate) / (1 + infaltionRate) - 1;
 
@@ -206,5 +230,6 @@ $(document).ready(function () {
 
   // Bind events
   $calculateButton.on('click', handleCalclateButtonClick);
+  $calculateButtonSalary.on('click', handleCalclateButtonSalaryClick);
   $calculationModeSelect.on('change', handleModeChange);
 });
